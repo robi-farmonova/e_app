@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e40af;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: var(--white);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .back-to-shop {
+            text-align: center;
+            margin-top: 2rem ;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-blue);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 1rem;
+            border-radius: 8px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-left: 20px;
+        }
+
+        .item-price {
+            margin-left: 20px;
+            color: var(--primary-blue);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .quantity-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            padding: 0.5rem;
+            border: 1px solid var(--primary-blue);
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #dc2626;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-summary {
+            margin-top: 2rem;
+            background-color: var(--light-blue);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .checkout-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--primary-blue);
+            padding: 2rem;
+        }
+        /* Chrome, Safari, Edge, Opera */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type="number"] {
+            appearance: textfield; /* Umumiy qo‘llash */
+            -moz-appearance: textfield; /* Firefox uchun */
+        }
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cart-empty img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        .hero-btn {
+        display: inline-block;
+        background-color: #4a6eb5;
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        }
+        
+        .hero-btn:hover {
+        background-color: #3a5795;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        a{
+        text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    {% set cart = session.get('cart') %}
+    {% if cart %}
+    <div class="cart-container">
+        <h1 class="cart-header">Your Shopping Cart</h1>
+
+        <div class="cart-items">
+            {% for product in session.get('cart') %}
+            <div class="cart-item">
+                {% set img_path = product['img_path'] %}
+                {% set category = product['category'] %}
+                {% set id = product['product_id'] %}
+                <img src="{{ url_for('static', filename=img_path) }}" width="100" height="100" alt="Product 1">
+                <div class="item-details">
+                    <h2 class="item-name">{{ product['name'] }}</h2>
+                    <p class="item-price">${{ product['price'] }}</p>
+                </div>
+                <div class="quantity-control">
+                    <a href="{{ url_for('minus_item', category=category, product_id=id)}}"><button class="quantity-btn">-</button></a>
+                    <input type="number" class="quantity-input" value="{{ product['quantity'] }}" min="1">
+                    <a href="{{ url_for('plus_item', category=category, product_id=id)}}"><button class="quantity-btn">+</button></a>
+                </div>
+                <button class="remove-btn"><a href="{{ url_for('remove_from_cart', category=category, product_id=id)}}">🗑️</a></button>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <div>
+                <p>Total</p>
+                <h2>${{ total }}</h2>    
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+        <div class="back-to-shop">
+            <a href="/view" class="hero-btn">Back to Shop</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="cart-empty">
+        <img src="https://cdn.dribbble.com/userupload/24411783/file/original-2dc61f8b7ebf481283d702be153b1697.jpg?resize=752x564&vertical=center" 
+                alt="Your Cart is Empty">
+        <a href="/view" class="hero-btn">Shop Now</a>
+    </div>
+    {% endif %}
+</body>
+</html>

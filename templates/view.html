@@ -1,0 +1,836 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Cotton T-Shirt - LuxeMarket</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    body {
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #111;
+    }
+    
+    .logo span {
+      color: #4a6eb5;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 2rem;
+    }
+    
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+      color: #4a6eb5;
+    }
+    
+    .header-icons {
+      display: flex;
+      align-items: center;
+    }
+    
+    .header-icons a {
+      margin-left: 1.5rem;
+      color: #333;
+      text-decoration: none;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 5%;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    
+    .breadcrumb a {
+      color: #4a6eb5;
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .breadcrumb span {
+      margin: 0 0.5rem;
+    }
+    
+    /* Product Detail Section */
+    .product-detail {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 5% 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    /* Product Images */
+    .product-images {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1rem;
+    }
+    
+    .thumbnail-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .thumbnail {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .thumbnail.active {
+      border-color: #4a6eb5;
+    }
+    
+    .main-image {
+      border-radius: 10px;
+      overflow: hidden;
+      height: 550px;
+    }
+    
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Product Info */
+    .product-info {
+      padding-top: 1rem;
+    }
+    
+    .product-tag {
+      display: inline-block;
+      background-color: #4a6eb5;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .product-category {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .product-price {
+      font-size: 1.8rem;
+      color: #4a6eb5;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .product-price .old-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1.2rem;
+      margin-left: 1rem;
+      font-weight: 400;
+    }
+
+.product-rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .stars {
+      color: #f8ce0b;
+      margin-right: 0.5rem;
+    }
+    
+    .review-count {
+      color: #777;
+      font-size: 0.9rem;
+    }
+    
+    .product-description {
+      margin-bottom: 2rem;
+      color: #555;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 2rem;
+    }
+    
+    /* Colors and Sizes */
+    .product-colors, .product-sizes {
+      margin-bottom: 2rem;
+    }
+    
+    .option-title {
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    
+    .color-options, .size-options {
+      display: flex;
+      gap: 0.8rem;
+    }
+    
+    .color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s;
+    }
+    
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+    
+    .color-option.active {
+      border-color: #4a6eb5;
+    }
+    
+    .color-black {
+      background-color: #111;
+    }
+    
+    .color-white {
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+    
+    .color-blue {
+      background-color: #4a6eb5;
+    }
+    
+    .color-red {
+      background-color: #e74c3c;
+    }
+    
+    .size-option {
+      min-width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    
+    .size-option:hover {
+      border-color: #4a6eb5;
+    }
+    
+    .size-option.active {
+      border-color: #4a6eb5;
+      background-color: #4a6eb5;
+      color: white;
+    }
+    
+    /* Quantity Counter */
+    .quantity {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .quantity-title {
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+    
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.2s;
+    }
+    
+    .quantity-btn:hover {
+      background-color: #eee;
+    }
+    
+    .quantity-input {
+      width: 50px;
+      height: 40px;
+      border: none;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      text-align: center;
+      font-size: 1rem;
+    }
+    
+    /* Add to Cart Button */
+    .add-to-cart {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .add-to-cart-btn {
+      flex: 1;
+      display: inline-block;
+      background-color: #4a6eb5;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .add-to-cart-btn:hover {
+      background-color: #3a5795;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .wishlist-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .wishlist-btn:hover {
+      background-color: #ffebee;
+      border-color: #ff4d4d;
+      color: #ff4d4d;
+    }
+    
+    /* Product Meta */
+    .product-meta {
+      margin-top: 2rem;
+      padding-top: 2rem;
+
+border-top: 1px solid #eee;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    
+    .meta-item {
+      margin-bottom: 0.5rem;
+    }
+    
+    .meta-item strong {
+      font-weight: 600;
+      color: #555;
+      margin-right: 0.5rem;
+    }
+    
+    /* Product Tabs */
+    .product-tabs {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 5%;
+    }
+    
+    .tabs-header {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 2rem;
+    }
+    
+    .tab-btn {
+      padding: 1rem 2rem;
+      font-weight: 600;
+      color: #777;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .tab-btn.active {
+      color: #4a6eb5;
+      border-bottom-color: #4a6eb5;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* Details Tab */
+    .product-details ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .product-details ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Review Tab */
+    .review {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    
+    .reviewer-name {
+      font-weight: 600;
+    }
+    
+    .review-date {
+      color: #777;
+      font-size: 0.9rem;
+    }
+    
+    /* Related Products */
+    .related-products {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 5% 5rem;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: #4a6eb5;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .product-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .product-image {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    
+    .card-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: #4a6eb5;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .card-info {
+      padding: 1.5rem;
+    }
+    
+    .card-category {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #111;
+    }
+    
+    .card-price {
+      font-size: 1.3rem;
+      color: #4a6eb5;
+      font-weight: 700;
+    }
+    
+    .card-price .old-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1rem;
+      margin-left: 0.5rem;
+      font-weight: 400;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: #ddd;
+      padding: 5rem 5% 2rem;
+    }
+    
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+gap: 3rem;
+    }
+    
+    .footer-column h3 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #4a6eb5;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column ul li a {
+      text-decoration: none;
+      color: #aaa;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      margin-top: 3rem;
+      border-top: 1px solid #333;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .product-detail {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .main-image {
+        height: 450px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 1rem 5%;
+      }
+      
+      nav ul {
+        display: none;
+      }
+      
+      .product-images {
+        grid-template-columns: 1fr;
+      }
+      
+      .thumbnail-container {
+        flex-direction: row;
+        overflow-x: auto;
+        order: 2;
+      }
+      
+      .main-image {
+        order: 1;
+        height: 350px;
+      }
+      
+      .tabs-header {
+        overflow-x: auto;
+      }
+    }
+        /* Chrome, Safari, Edge, Opera */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+        appearance: textfield; /* Umumiy qo‘llash */
+        -moz-appearance: textfield; /* Firefox uchun */
+    }
+  
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">Luxe<span>Market</span></div>
+      
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/view">Shop</a></li>
+          <li><a href="#footerSection">About</a></li>
+          <li><a href="#footerSection">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-icons">
+        {% if session.get('username') %}
+        <a href="/logout">{{ session['username'] }}</a>
+        <a href="/cart">Cart</a>
+        {% else %}
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  
+  
+  <!-- Product Detail Section -->
+  <div class="breadcrumb">
+    <a href="/#">Home</a> <span>›</span> 
+    <a href="/#categoriesSection">Shop</a> <span>›</span> 
+    <a href="/view/{{ product['category'] }}">{{ product['category'] }}</a> <span>›</span> 
+    {{ product['name'] }}
+  </div>
+  <section class="product-detail">
+    <!-- Product Images -->
+    <div class="product-images">
+      <div class="thumbnail-container">
+      </div>
+      
+      <div class="main-image">
+        <img src="{{ url_for('static', filename=img_path) }}" alt="Product 1">
+      </div>
+    </div>
+    
+    <!-- Product Info -->
+    <div class="product-info">
+      <p class="product-category">{{ product['category'] }}</p>
+      <h1 class="product-title">{{ product['name'] }}</h1>
+      
+      <div class="product-price">
+        {% set old_price = product['price'] | int * 1.2 - 0.01 %}
+        ${{ product['price'] }} <span class="old-price">${{ old_price }}</span>
+      </div>
+      
+      
+      <div class="product-description">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod ligula vel risus fermentum, at tincidunt elit tincidunt. Nullam auctor nisi ac sapien molestie, id suscipit nulla tincidunt. Proin at lorem nec orci vehicula faucibus ut in quam. Curabitur blandit libero sit amet purus suscipit, at fermentum tortor vestibulum.</p>
+      </div>
+      
+      <!-- Quantity Selector -->
+      <form action="{{ url_for('add_to_cart') }}" method="POST">
+      <div class="quantity">
+          <p class="quantity-title">Quantity</p>
+          <div class="quantity-controls">
+              <button type="button" class="quantity-btn decrease">-</button>
+              <input type="number" name="quantity" class="quantity-input" value="1" min="1">
+              <button type="button" class="quantity-btn increase">+</button>
+          </div>
+      </div>
+
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              const decreaseBtn = document.querySelector(".decrease");
+              const increaseBtn = document.querySelector(".increase");
+              const inputField = document.querySelector(".quantity-input");
+
+              decreaseBtn.addEventListener("click", function () {
+                  let value = parseInt(inputField.value);
+                  if (value > parseInt(inputField.min)) {
+                      inputField.value = value - 1;
+                  }
+              });
+
+              increaseBtn.addEventListener("click", function () {
+                  let value = parseInt(inputField.value);
+                  inputField.value = value + 1;
+              });
+          });
+      </script>
+      {% set cat = product['category'] %}
+      <input name="category" type="hidden" value="{{ cat }}">
+      {% set p_id = product['id'] %}
+      <input name="product_id" type="hidden" value="{{ p_id }}">
+
+      <!-- Add to Cart Button -->
+      <div class="add-to-cart">
+        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      </form>
+      {% set messages = get_flashed_messages() %}
+      {% if messages %}
+          <div class="success-message">
+              {{ messages[0] }}
+          </div>
+      {% endif %}
+    </div>
+  </section>
+
+
+  
+  <!-- Footer -->
+  <footer id="footerSection">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Store Locations</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Shipping Information</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
